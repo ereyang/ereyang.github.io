@@ -5,7 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>새 주소로 이동 중…</title>
 <script>
-var target = "https://ereverse01.github.io" + location.pathname + location.search + location.hash;
+// 예전 주소(ereyang.github.io/앱이름/...)를 새 주소(ereverse01.github.io/분류/앱이름/...)로 한 번에 넘겨줍니다.
+var MOVED = {
+  "my-vocab": "class", "preposition-room": "class", "finding-what-defines-us": "class",
+  "infographic-presentation": "class", "reading-mentoring": "class", "worksheet-maker": "class",
+  "montage-maker": "class", "reinforcement-cards": "class",
+  "class-progress": "work", "personal-timetable": "work", "teacher-slot": "work", "exam-maker": "work",
+  "my-memo": "family", "family-budget": "family", "family-fuel": "family",
+  "ieum-prayer": "church", "mokjang-attendance": "church"
+};
+var parts = location.pathname.split("/");
+var cat = MOVED[parts[1]];
+var path = location.pathname;
+if (cat) { path = "/" + cat + "/" + parts.slice(1).join("/"); if (parts.length === 2) path += "/"; }
+var target = "https://ereverse01.github.io" + path + location.search + location.hash;
 location.replace(target);
 </script>
 </head>
